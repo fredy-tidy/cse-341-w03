@@ -15,6 +15,10 @@ const getAllClasses = async (req, res) => {
 
   const getSingleClass = async (req, res) => {
     //#swagger.tags=['classes']
+    if (!ObjectId.isValid(req.params.id)) {
+      res.status(400).json('Must use a valid contact id to find a class.');
+    }
+
     try {
       const classId = ObjectId.createFromHexString(req.params.id);
       const class_ = await mongodb.getDb().db().collection('classes').findOne({ _id: classId });
@@ -64,6 +68,10 @@ const getAllClasses = async (req, res) => {
  
   const updateClass = async (req, res) => {
     //#swagger.tags=['classes']
+
+    if (!ObjectId.isValid(req.params.id)) {
+      res.status(400).json('Must use a valid contact id to find a class.');
+    }
     const classId = ObjectId.createFromHexString(req.params.id);
     if (!req.body.course_code || !req.body.course_name) {
       return res.status(400).json({ message: ' course_code, course_name.' });
@@ -87,6 +95,11 @@ const getAllClasses = async (req, res) => {
   
   const deleteClass = async (req, res) => {
     //#swagger.tags=['classes']
+    if (!ObjectId.isValid(req.params.id)) {
+      res.status(400).json('Must use a valid contact id to find a class.');
+    }
+
+
     const classId = ObjectId.createFromHexString(req.params.id);
    
    const response = await mongodb.getDb().db().collection('classes').deleteOne({_id: classId});

@@ -15,6 +15,12 @@ const getAll = async (req, res) => {
 
   const getSingle = async (req, res) => {
     //#swagger.tags=['students']
+
+    if (!ObjectId.isValid(req.params.id)) {
+      res.status(400).json('Must use a valid contact id to find a student.');
+    }
+
+
     try {
       const contactId = ObjectId.createFromHexString(req.params.id);
       const contact = await mongodb.getDb().db().collection('students').findOne({ _id: contactId });
@@ -71,6 +77,10 @@ const getAll = async (req, res) => {
  
   const updateStudent = async (req, res) => {
     //#swagger.tags=['students']
+
+    if (!ObjectId.isValid(req.params.id)) {
+      res.status(400).json('Must use a valid contact id to find a student.');
+    }
     const studentId = ObjectId.createFromHexString(req.params.id);
     if (!req.body.firstName || !req.body.lastName || !req.body.email) {
       return res.status(400).json({ message: 'First name, last name, and email are required fields.' });
@@ -97,6 +107,10 @@ const getAll = async (req, res) => {
   
   const deleteStudent = async (req, res) => {
     //#swagger.tags=['students']
+    if (!ObjectId.isValid(req.params.id)) {
+      res.status(400).json('Must use a valid contact id to find a student to delete.');
+    }
+
     const studentId = ObjectId.createFromHexString(req.params.id);
    
    const response = await mongodb.getDb().db().collection('students').deleteOne({_id: studentId});
