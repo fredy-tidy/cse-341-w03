@@ -1,0 +1,31 @@
+const express = require('express');
+const mongodb = require('./model/connect')
+const app = express();
+
+const port = 3000;
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin','*');
+    res.setHeader(
+        'Access-Control-Allow-Headers',
+        'Origin, X-Request-with, Content-Type, Accept, Z-key'
+    );
+    res.setHeader('Access-Control-Allow-Methods','GET, POST, PUT, DELETE, OPTIONS');
+    next();
+});
+
+
+app.use('/', require('./routes/courses'));
+
+
+mongodb.initDb((err) => {
+    if(err){
+        console.log(err);
+    }
+    else{
+        app.listen(process.env.PORT || port, () => {console.log("Running and db on port "+ (process.env.PORT || 3000))});
+    }
+});
+ 

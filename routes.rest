@@ -1,0 +1,14 @@
+### Local host
+
+### server working 
+GET http://localhost:3000/
+
+### getAll  
+GET http://localhost:3000/students/getAll/
+
+### getSingel 
+GET http://localhost:3000/students/getOne/6884e6887cf938b514944285
+
+### get api-docs
+GET http://localhost:3000/api-docs
+
