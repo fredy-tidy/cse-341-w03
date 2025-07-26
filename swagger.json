@@ -15,7 +15,7 @@
     "/students/getAll": {
       "get": {
         "tags": [
-          "courses"
+          "students"
         ],
         "description": "",
         "responses": {
@@ -31,7 +31,7 @@
     "/students/getOne/{id}": {
       "get": {
         "tags": [
-          "courses"
+          "students"
         ],
         "description": "",
         "parameters": [
@@ -58,7 +58,7 @@
     "/students/create": {
       "post": {
         "tags": [
-          "curses"
+          "students"
         ],
         "description": "",
         "parameters": [
@@ -83,7 +83,7 @@
                 "birthday": {
                   "example": "any"
                 },
-                "Nationaliy": {
+                "Nationality": {
                   "example": "any"
                 },
                 "registration_date": {
@@ -112,7 +112,7 @@
     "/students/update/{id}": {
       "put": {
         "tags": [
-          "courses"
+          "students"
         ],
         "description": "",
         "parameters": [
@@ -143,7 +143,7 @@
                 "birthday": {
                   "example": "any"
                 },
-                "Nationaliy": {
+                "Nationality": {
                   "example": "any"
                 },
                 "registration_date": {
@@ -169,7 +169,7 @@
     "/students/delete/{id}": {
       "delete": {
         "tags": [
-          "courses"
+          "students"
         ],
         "description": "",
         "parameters": [
@@ -196,6 +196,157 @@
         "responses": {
           "200": {
             "description": "OK"
+          }
+        }
+      }
+    },
+    "/classes/getAllClasses": {
+      "get": {
+        "tags": [
+          "classes"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/classes/getSingleClass/{id}": {
+      "get": {
+        "tags": [
+          "classes"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/classes/createClass": {
+      "post": {
+        "tags": [
+          "classes"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "course_code": {
+                  "example": "any"
+                },
+                "course_name": {
+                  "example": "any"
+                },
+                "rolled_students": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/classes/updateClass/{id}": {
+      "put": {
+        "tags": [
+          "classes"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "course_code": {
+                  "example": "any"
+                },
+                "course_name": {
+                  "example": "any"
+                },
+                "rolled_students": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/classes/deleteClass/{id}": {
+      "delete": {
+        "tags": [
+          "classes"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }

@@ -9,6 +9,37 @@ GET http://localhost:3000/students/getAll/
 ### getSingel 
 GET http://localhost:3000/students/getOne/6884e6887cf938b514944285
 
+### createStudent
+POST http://localhost:3000/students/create
+Content-type: application/json
+
+{
+  "firstName": "any",
+  "lastName": "any",
+  "email": "any",
+  "telefone": "any",
+  "birthday": "any",
+  "Nationaliy": "any",
+  "registration_date": "any"
+}
+
+### updateStudent
+PUT http://localhost:3000/students/update/688523310a9d116cd4078677
+Content-type: application/json
+
+{
+  "firstName": "update",
+  "lastName": "any",
+  "email": "any",
+  "telefone": "any",
+  "birthday": "any",
+  "Nationaliy": "any",
+  "registration_date": "any"
+}
+
+
+
+
 ### get api-docs
 GET http://localhost:3000/api-docs
 
