@@ -8,7 +8,7 @@ const saveStudents = (req, res, next) => {
     telefone: "required|string",
     birthday: "required|date|before_or_equal:today",
     Nationality: "required|string",
-    registration_date: "required|date|after_or_equal:today"
+    registration_date: "required|date|before_or_equal:today"
   };
   validator(req.body, validationRule, {}, (err, status) => {
     if (!status) {
