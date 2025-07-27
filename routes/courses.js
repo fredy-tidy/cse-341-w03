@@ -2,13 +2,14 @@ const express = require('express');
 const router = express.Router();
 
 
-const validation = require('../middleware/validate');
+
+const validationStudent = require('../middleware/validateStudent')
 const coursesController = require('../controller/students'  );
 
 router.get('/students/getAll', coursesController.getAll);
 router.get('/students/getOne/:id', coursesController.getSingle);
-router.post('/students/create', validation.saveStudents, coursesController.createStudent);
-router.put('/students/update/:id', validation.saveStudents,coursesController.updateStudent);
+router.post('/students/create', validationStudent.saveStudents, coursesController.createStudent);
+router.put('/students/update/:id', validationStudent.saveStudents,coursesController.updateStudent);
 router.delete('/students/delete/:id',coursesController.deleteStudent);
 router.use('/',require('./swagger'));
 
@@ -17,6 +18,7 @@ router.get('/', (req,res) => {
     res.send('Hellow World at week 03');
 });
 
+const validation = require('../middleware/validate');
 const classesController = require('../controller/classes');
 router.get('/classes/getAllClasses', classesController.getAllClasses);
 router.get('/classes/getSingleClass/:id', classesController.getSingleClass);
