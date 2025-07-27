@@ -41,6 +41,7 @@ const getSingle = async (req, res) => {
 
 const createStudent = async (req, res) => {
   //#swagger.tags=['students']
+  try {
   if (
     !req.body.firstName ||
     !req.body.lastName ||
@@ -64,7 +65,7 @@ const createStudent = async (req, res) => {
     Nationality: req.body.Nationality,
     registration_date: req.body.registration_date,
   };
-  try {
+
     const response = await mongodb
       .getDb()
       .db()
@@ -95,7 +96,7 @@ const createStudent = async (req, res) => {
 
 const updateStudent = async (req, res) => {
   //#swagger.tags=['students']
-
+  try {
   if (!ObjectId.isValid(req.params.id)) {
     res.status(400).json("Must use a valid contact id to find a student.");
   }
@@ -126,7 +127,7 @@ const updateStudent = async (req, res) => {
     registration_date: req.body.registration_date,
   };
 
-  try {
+
     const response = await mongodb
       .getDb()
       .db()
