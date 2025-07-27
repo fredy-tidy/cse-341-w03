@@ -8,7 +8,7 @@ const saveStudents = (req, res, next) => {
     telefone: "required|string",
     birthday: "requires|date|before_or_equal:today",
     Nationality: "required|string",
-    registration_date: "required|date|after_or_equal:today",
+    registration_date: "required|date|after_or_equal:today"
   };
   validator(req.body, validationRule, {}, (err, status) => {
     if (!status) {
@@ -44,5 +44,6 @@ const saveClasses = (req, res, next) => {
 
 module.exports = {
   saveStudents,
-  saveClasses,
+  saveClasses
+  
 };

@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
-const coursesController = require('../controller/students'  );
+
 const validation = require('../middleware/validate');
+const coursesController = require('../controller/students'  );
 
 router.get('/students/getAll', coursesController.getAll);
 router.get('/students/getOne/:id', coursesController.getSingle);
