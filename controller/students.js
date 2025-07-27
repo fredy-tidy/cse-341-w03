@@ -41,12 +41,18 @@ const getSingle = async (req, res) => {
 
 const createStudent = async (req, res) => {
   //#swagger.tags=['students']
-  if (!req.body.firstName || !req.body.lastName || !req.body.email) {
-    return res
-      .status(400)
-      .json({
-        message: "First name, last name, and email are required fields.",
-      });
+  if (
+    !req.body.firstName ||
+    !req.body.lastName ||
+    !req.body.email ||
+    !req.body.telefone ||
+    !req.body.birthday.Nationality ||
+    !req.body.birthday.registration_date
+  ) {
+    return res.status(400).json({
+      message:
+        "firstName, lastName, telefone, birthday, Nationality and registration_date are required fields.",
+    });
   }
 
   const student = {
@@ -70,24 +76,20 @@ const createStudent = async (req, res) => {
         contactId: response.insertedId, // Return the ID of the newly created contact
       });
     } else {
-      res
-        .status(500)
-        .json({
-          message:
-            "Failed to create student: Operation not acknowledged by database.",
-        });
+      res.status(500).json({
+        message:
+          "Failed to create student: Operation not acknowledged by database.",
+      });
     }
   } catch (error) {
     console.error("Error creating contact:", error); // Log the actual error for debugging
 
     // Generic catch-all for other unexpected errors
-    res
-      .status(500)
-      .json({
-        message:
-          error.message ||
-          "An unexpected error occurred while creating the contact.",
-      });
+    res.status(500).json({
+      message:
+        error.message ||
+        "An unexpected error occurred while creating the contact.",
+    });
   }
 };
 
@@ -98,24 +100,33 @@ const updateStudent = async (req, res) => {
     res.status(400).json("Must use a valid contact id to find a student.");
   }
 
+  const studentId = ObjectId.createFromHexString(req.params.id);
+
+  if (
+    !req.body.firstName ||
+    !req.body.lastName ||
+    !req.body.email ||
+    !req.body.telefone ||
+    !req.body.birthday.Nationality ||
+    !req.body.birthday.registration_date
+  ) {
+    return res.status(400).json({
+      message:
+        "firstName, lastName, telefone, birthday, Nationality and registration_date are required fields.",
+    });
+  }
+  
+  const student = {
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    email: req.body.email,
+    telefone: req.body.telefone,
+    birthday: req.body.birthday,
+    Nationality: req.body.Nationality,
+    registration_date: req.body.registration_date,
+  };
+
   try {
-    const studentId = ObjectId.createFromHexString(req.params.id);
-    if (!req.body.firstName || !req.body.lastName || !req.body.email) {
-      return res
-        .status(400)
-        .json({
-          message: "First name, last name, and email are required fields.",
-        });
-    }
-    const student = {
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      email: req.body.email,
-      telefone: req.body.telefone,
-      birthday: req.body.birthday,
-      Nationality: req.body.Nationality,
-      registration_date: req.body.registration_date,
-    };
     const response = await mongodb
       .getDb()
       .db()
@@ -137,13 +148,11 @@ const updateStudent = async (req, res) => {
     console.error("Error creating contact:", error); // Log the actual error for debugging
 
     // Generic catch-all for other unexpected errors
-    res
-      .status(500)
-      .json({
-        message:
-          error.message ||
-          "An unexpected error occurred while creating the contact.",
-      });
+    res.status(500).json({
+      message:
+        error.message ||
+        "An unexpected error occurred while creating the contact.",
+    });
   }
 };
 
@@ -176,13 +185,11 @@ const deleteStudent = async (req, res) => {
     console.error("Error creating contact:", error); // Log the actual error for debugging
 
     // Generic catch-all for other unexpected errors
-    res
-      .status(500)
-      .json({
-        message:
-          error.message ||
-          "An unexpected error occurred while creating the contact.",
-      });
+    res.status(500).json({
+      message:
+        error.message ||
+        "An unexpected error occurred while creating the contact.",
+    });
   }
 };
 
