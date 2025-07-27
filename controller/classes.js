@@ -42,10 +42,10 @@ const getSingleClass = async (req, res) => {
 const createClass = async (req, res) => {
   //#swagger.tags=['classes']
   try {
-    if (!req.body.course_code || !req.body.course_name) {
+    if (!req.body.course_code || !req.body.course_name || !req.body.rolled_students) {
       return res
         .status(400)
-        .json({ message: "course_code, course_name. something was wrong" });
+        .json({ message: "course_code, course_name and rolled_students are necesary. something was wrong" });
     }
     const class_ = {
       course_code: req.body.course_code,
