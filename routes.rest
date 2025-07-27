@@ -14,14 +14,15 @@ POST http://localhost:3000/students/create
 Content-type: application/json
 
 {
-  "firstName": "any",
-  "lastName": "any",
-  "email": "any",
-  "telefone": "any",
-  "birthday": "any",
-  "Nationaliy": "any",
-  "registration_date": "any"
-}
+    
+    "firstName": "Juan3",
+    "lastName": "Perez",
+    "email": "juan.perez@email.com",
+    "telefone": "+52 88888888",
+    "birthday": "2001-08-08",
+    "Nationality": "Mexican",
+    "registration_date": "2023-01-08"
+  }
 
 ### updateStudent
 PUT http://localhost:3000/students/update/688523310a9d116cd4078677

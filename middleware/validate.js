@@ -6,9 +6,9 @@ const saveStudents = (req, res, next) => {
     lastName: "required|string",
     email: "required|email",
     telefone: "required|string",
-    birthday: "required|date",
+    birthday: "required|date|date_format:YYYY-MM-DD",
     Nationality: "required|string",
-    registration_date: "required|date"
+    registration_date: "required|date|date_format:YYYY-MM-DD"
   };
   validator(req.body, validationRule, {}, (err, status) => {
     if (!status) {
