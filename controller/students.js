@@ -108,8 +108,8 @@ const updateStudent = async (req, res) => {
     !req.body.lastName ||
     !req.body.email ||
     !req.body.telefone ||
-    !req.body.birthday.Nationality ||
-    !req.body.birthday.registration_date
+    !req.body.Nationality ||
+    !req.body.registration_date
   ) {
     return res.status(400).json({
       message:
