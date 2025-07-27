@@ -8,7 +8,7 @@ const coursesController = require('../controller/students'  );
 router.get('/students/getAll', coursesController.getAll);
 router.get('/students/getOne/:id', coursesController.getSingle);
 router.post('/students/create', validation.saveStudents, coursesController.createStudent);
-router.put('/students/update/:id',coursesController.updateStudent);
+router.put('/students/update/:id', validation.saveStudents,coursesController.updateStudent);
 router.delete('/students/delete/:id',coursesController.deleteStudent);
 router.use('/',require('./swagger'));
 
