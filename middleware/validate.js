@@ -1,4 +1,5 @@
 const validator = require("../helpers/validate");
+const validatorStudent = require("../helpers/validate");
 
 const saveStudents = (req, res, next) => {
   const validationRule = {
@@ -10,7 +11,7 @@ const saveStudents = (req, res, next) => {
     Nationality: "required|string",
     registration_date: "required|date|after_or_equal:today"
   };
-  validator(req.body, validationRule, {}, (err, status) => {
+  validatorStudent(req.body, validationRule, {}, (err, status) => {
     if (!status) {
       res.status(412).send({
         success: false,
