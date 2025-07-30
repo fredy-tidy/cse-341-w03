@@ -59,3 +59,5 @@ Australia (Australian)
 Common First Name: David
 
 Common Last Name: Jones
+
+### The project in github have the name ProjectCourses
